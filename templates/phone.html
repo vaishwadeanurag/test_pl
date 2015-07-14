@@ -113,6 +113,22 @@
                     $('#login_box').hide();
                     $('#logout_box').show();
                     $('#callcontainer').show();
+
+                setInterval(function() { print_progress() }, 200);
+
+                function print_progress(){
+                    var response = '';
+                    $.ajax({ type: "GET",   
+                             url: "http://1342cd8a.ngrok.io/get_queue_length/",   
+                             async: false,
+                             success : function(text)
+                             {
+                                 response = text;
+                             }
+                    });
+                    $( "#call_queue_progress" ).replaceWith("<div id='call_queue_progress'>"+response+"</div>");
+                    console.log(response)
+            }
                 }
 
                 function onLoginFailed() {
@@ -252,6 +268,8 @@
 
                 });
 
+               
+
             </script>
 
         </head>
@@ -320,6 +338,7 @@
                             <a class="btn btn-info" href="#" onclick="dtmf('#');"> #</a><br>
                         </div>
                     </div>
+                    <div id="call_queue_progress"></div>
                     <hr>
 
                     <div class="footer">

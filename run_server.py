@@ -44,6 +44,10 @@ def answer():
     return Response(xml, mimetype='text/xml')
 
 
+@app.route('/get_queue_length/', methods=['GET'])
+def get_queue_length():
+    return Response(str(len(call_queue)))
+
 
 @app.route('/hangup_url/', methods=['GET'])
 def hangup():
