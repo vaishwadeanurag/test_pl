@@ -15,11 +15,18 @@ call_queue = deque()
 def answer():
     CallUUID = request.args.get('CallUUID')
     if len(call_queue) == 0 or CallUUID in call_queue:
-        xml = """
+        nxml = """
                <Response>
                <Dial>
                <Number>+919019188898</Number>
                </Dial>
+              </Response>
+              """
+        xml = """
+              <Response>
+              <Dial>
+              <User>sip:testuser150714135336@phone.plivo.com</User>
+              </Dial>
               </Response>
               """
         if CallUUID not in call_queue:
